@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bpew8n3qdphg8"]
+
+[ext_resource type="Script" uid="uid://c4ygx0churxuq" path="res://scripts/speed_checker.gd" id="1_clfb5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o0dtq"]
+
+[node name="SpeedChecker" type="Node3D" unique_id=1769848411]
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1067092917]
+script = ExtResource("1_clfb5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=842981460]
+shape = SubResource("BoxShape3D_o0dtq")
+
+[connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
+[connection signal="body_exited" from="Area3D" to="Area3D" method="_on_body_exited"]

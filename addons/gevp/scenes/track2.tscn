@@ -1,0 +1,145 @@
+[gd_scene format=3 uid="uid://c8xjekr426835"]
+
+[ext_resource type="Script" uid="uid://d3quhhh36ac8a" path="res://addons/road-generator/nodes/road_manager.gd" id="1_k6x0t"]
+[ext_resource type="Script" uid="uid://8hk4tqftbwbd" path="res://addons/road-generator/nodes/road_container.gd" id="2_d3ovq"]
+[ext_resource type="Material" uid="uid://dpashsuk5lr4x" path="res://addons/road-generator/resources/road_texture.material" id="3_18e8o"]
+[ext_resource type="Script" uid="uid://ddubm2sxt1cn7" path="res://addons/road-generator/nodes/road_point.gd" id="4_viw6f"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_62kxx"]
+size = Vector3(15, 1, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mw024"]
+size = Vector3(15, 1, 10)
+
+[sub_resource type="Gradient" id="Gradient_u6ph6"]
+colors = PackedColorArray(0.746094, 0.746094, 0.746094, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_jwgtv"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_esu3j"]
+noise = SubResource("FastNoiseLite_jwgtv")
+color_ramp = SubResource("Gradient_u6ph6")
+seamless = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pklv7"]
+albedo_color = Color(0, 0.4, 0.00784314, 1)
+albedo_texture = SubResource("NoiseTexture2D_esu3j")
+uv1_scale = Vector3(100, 100, 100)
+
+[sub_resource type="BoxMesh" id="BoxMesh_h2wbr"]
+material = SubResource("StandardMaterial3D_pklv7")
+size = Vector3(1000, 1, 1000)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_28hur"]
+size = Vector3(1000, 1, 1000)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_opxhh"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_fr4m5"]
+sky_material = SubResource("ProceduralSkyMaterial_opxhh")
+
+[sub_resource type="Environment" id="Environment_hn4xq"]
+background_mode = 2
+sky = SubResource("Sky_fr4m5")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Demo" type="Node3D" unique_id=69065307]
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="." unique_id=2032075180 groups=["Road"]]
+transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 366.196, 0.316678, 79.3629)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2" unique_id=1429998476]
+mesh = SubResource("BoxMesh_62kxx")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2" unique_id=1711530782]
+shape = SubResource("BoxShape3D_mw024")
+
+[node name="RoadManager" type="Node3D" parent="." unique_id=1616787176 groups=["Road"]]
+script = ExtResource("1_k6x0t")
+metadata/_custom_type_script = "uid://d3quhhh36ac8a"
+
+[node name="RoadContainer" type="Node3D" parent="RoadManager" unique_id=516788962 groups=["Road"]]
+script = ExtResource("2_d3ovq")
+material_resource = ExtResource("3_18e8o")
+use_lowpoly_preview = true
+metadata/_custom_type_script = "uid://8hk4tqftbwbd"
+
+[node name="RP_001" type="Node3D" parent="RoadManager/RoadContainer" unique_id=604293006 groups=["Road"]]
+transform = Transform3D(0.9999611, 4.403813e-05, 0.0088246595, 0, 0.99998754, -0.0049902867, -0.008824769, 0.0049900925, 0.9999486, -31.281092, 0.09998512, -0.18499088)
+script = ExtResource("4_viw6f")
+traffic_dir = Array[int]([2, 2, 1, 1])
+lanes = Array[int]([2, 4, 4, 2])
+next_mag = 36.288605
+prior_pt_init = NodePath("../RP_002")
+next_pt_init = NodePath("../RP_006")
+
+[node name="RP_002" type="Node3D" parent="RoadManager/RoadContainer" unique_id=661316848 groups=["Road"]]
+transform = Transform3D(0.9999611, 4.5248573e-05, 0.008824652, -3.6379786e-12, 0.9999869, -0.005127455, -0.0088247685, 0.005127256, 0.9999479, -26.724546, 0.4621662, -72.75847)
+script = ExtResource("4_viw6f")
+traffic_dir = Array[int]([2, 2, 1, 1])
+lanes = Array[int]([2, 4, 4, 2])
+prior_mag = 67.14924
+next_mag = 36.288605
+prior_pt_init = NodePath("../RP_003")
+next_pt_init = NodePath("../RP_001")
+
+[node name="RP_003" type="Node3D" parent="RoadManager/RoadContainer" unique_id=2133902436 groups=["Road"]]
+transform = Transform3D(0.4402971, -0.01479552, -0.89773023, -0.0046234406, 0.99981356, -0.01874555, 0.89784026, 0.012404214, 0.44014657, 80.3512, 1.2956889, -179.90384)
+script = ExtResource("4_viw6f")
+traffic_dir = Array[int]([2, 2, 1, 1])
+lanes = Array[int]([2, 4, 4, 2])
+prior_mag = 52.43334
+next_mag = 67.14924
+prior_pt_init = NodePath("../RP_004")
+next_pt_init = NodePath("../RP_002")
+
+[node name="RP_004" type="Node3D" parent="RoadManager/RoadContainer" unique_id=605920273 groups=["Road"]]
+transform = Transform3D(-0.73262626, -0.014129483, -0.68048453, -0.019282486, 0.9998141, -1.862835e-09, 0.68035805, 0.0131214345, -0.73276246, 179.79471, 0.25, -146.61728)
+script = ExtResource("4_viw6f")
+traffic_dir = Array[int]([2, 2, 1, 1])
+lanes = Array[int]([2, 4, 4, 2])
+prior_mag = 86.139305
+next_mag = 43.814003
+prior_pt_init = NodePath("../RP_005")
+next_pt_init = NodePath("../RP_003")
+
+[node name="RP_005" type="Node3D" parent="RoadManager/RoadContainer" unique_id=771591089 groups=["Road"]]
+transform = Transform3D(-0.9798082, -0.011000916, 0.1996368, -0.011226914, 0.999937, -1.01425424e-10, -0.19962423, -0.0022413053, -0.97986996, 216.99959, 0.25, 21.596024)
+script = ExtResource("4_viw6f")
+traffic_dir = Array[int]([2, 2, 1, 1])
+lanes = Array[int]([2, 4, 4, 2])
+prior_mag = 102.706604
+next_mag = 86.139305
+prior_pt_init = NodePath("../RP_006")
+next_pt_init = NodePath("../RP_004")
+
+[node name="RP_006" type="Node3D" parent="RoadManager/RoadContainer" unique_id=387628937 groups=["Road"]]
+transform = Transform3D(0.20361629, -9.288309e-06, 0.97905076, 4.561673e-05, 1, 2.842171e-13, -0.97905076, 4.4661094e-05, 0.20361629, 21.92022, 0.24999619, 101.95628)
+script = ExtResource("4_viw6f")
+traffic_dir = Array[int]([2, 2, 1, 1])
+lanes = Array[int]([2, 4, 4, 2])
+prior_mag = 102.706604
+next_mag = 102.706604
+prior_pt_init = NodePath("../RP_001")
+next_pt_init = NodePath("../RP_005")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1910437496 groups=["Road"]]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=162401085]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+mesh = SubResource("BoxMesh_h2wbr")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=2131466655]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_28hur")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=969977800]
+environment = SubResource("Environment_hn4xq")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1668946853]
+transform = Transform3D(0.527563, -0.469868, 0.707743, -1.33511e-08, 0.833114, 0.553101, -0.849516, -0.291796, 0.43952, 0, 2.26991, 0)

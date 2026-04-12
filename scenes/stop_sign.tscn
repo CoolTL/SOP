@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://04hklkngotge"]
+
+[ext_resource type="Script" uid="uid://b1wdfimim6ti8" path="res://scripts/stop_sign.gd" id="1_eo8om"]
+[ext_resource type="PackedScene" uid="uid://lf485nf1o86o" path="res://assets/sm_stop.tscn" id="2_ts8k5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rch63"]
+
+[node name="StopChecker" type="Node3D" unique_id=457070357]
+
+[node name="Area3D" type="Area3D" parent="." unique_id=969289128 node_paths=PackedStringArray("stop_sign")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.38022435, 0)
+script = ExtResource("1_eo8om")
+stop_sign = NodePath("../SM_stop")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1267644844]
+shape = SubResource("BoxShape3D_rch63")
+
+[node name="SM_stop" parent="." unique_id=618739489 instance=ExtResource("2_ts8k5")]
+unique_name_in_owner = true
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0.38022435, 0)
+
+[connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
+[connection signal="body_exited" from="Area3D" to="Area3D" method="_on_body_exited"]
+
+[editable path="SM_stop"]

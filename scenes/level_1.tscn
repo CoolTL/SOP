@@ -8,9 +8,11 @@
 [ext_resource type="Script" uid="uid://dh62eiedykw0x" path="res://addons/gevp/scripts/camera.gd" id="6_pa8r4"]
 [ext_resource type="Script" uid="uid://d3quhhh36ac8a" path="res://addons/road-generator/nodes/road_manager.gd" id="7_2os1m"]
 [ext_resource type="Script" uid="uid://8hk4tqftbwbd" path="res://addons/road-generator/nodes/road_container.gd" id="8_go7sj"]
+[ext_resource type="Material" uid="uid://dpashsuk5lr4x" path="res://addons/road-generator/resources/road_texture.material" id="9_2aecg"]
 [ext_resource type="Script" uid="uid://ddubm2sxt1cn7" path="res://addons/road-generator/nodes/road_point.gd" id="9_7gny6"]
 [ext_resource type="PackedScene" uid="uid://dfggtpn3gyrn0" path="res://addons/road-generator/custom_containers/3way_2x2.tscn" id="10_2os1m"]
 [ext_resource type="PackedScene" uid="uid://bpew8n3qdphg8" path="res://scenes/speed_checker.tscn" id="12_go7sj"]
+[ext_resource type="PackedScene" uid="uid://04hklkngotge" path="res://scenes/stop_sign.tscn" id="13_6dial"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pklv7"]
 albedo_color = Color(0.17111987, 0.17111987, 0.17111987, 1)
@@ -109,6 +111,7 @@ metadata/_custom_type_script = "uid://d3quhhh36ac8a"
 
 [node name="RoadContainer" type="Node3D" parent="RoadManager" unique_id=279664811]
 script = ExtResource("8_go7sj")
+material_resource = ExtResource("9_2aecg")
 use_lowpoly_preview = true
 edge_containers = Array[NodePath]([NodePath("../3way_2x2"), NodePath(""), NodePath("../3way_2x2"), NodePath("../3way_2x3"), NodePath(""), NodePath("../3way_2x3")])
 edge_rp_targets = Array[NodePath]([NodePath("RP_003"), NodePath(""), NodePath("RP_002"), NodePath("RP_003"), NodePath(""), NodePath("RP_002")])
@@ -324,4 +327,35 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -90.90134, 7.0244026, 0)
 [node name="Area3D" parent="SpeedChecker" index="0" unique_id=1067092917]
 transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 43.004265, 0)
 
+[node name="SM_speed_50" parent="SpeedChecker" index="1" unique_id=1741663747]
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 50.114254, -6.867014, 8.571915)
+
+[node name="StopChecker" parent="." unique_id=457070357 instance=ExtResource("13_6dial")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -19.821709)
+
+[node name="Area3D" parent="StopChecker" index="0" unique_id=969289128]
+transform = Transform3D(17.156002, 0, 0, 0, 3.8274524, 0, 0, 0, 1, 0, 0.38022435, 0)
+
+[node name="CollisionShape3D" parent="StopChecker/Area3D" index="0" unique_id=1267644844]
+transform = Transform3D(1, 0, 0, 0, 2.1762927, 0, 0, 0, 5.886897, 0, 0, 3.1501427)
+
+[node name="SM_stop" parent="StopChecker" index="1" unique_id=618739489]
+transform = Transform3D(-8.7422775e-10, 0, -0.02, 0, 0.02, 0, 0.02, 0, -8.7422775e-10, -8.832708, 0.38022435, 0)
+
+[node name="StopChecker2" parent="." unique_id=1234910224 instance=ExtResource("13_6dial")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -21.621563, 0, -0.11071968)
+
+[node name="Area3D" parent="StopChecker2" index="0" unique_id=969289128]
+transform = Transform3D(17.156002, 0, 0, 0, 3.8274524, 0, 0, 0, 1, 0, 0.38022435, 0)
+
+[node name="CollisionShape3D" parent="StopChecker2/Area3D" index="0" unique_id=1267644844]
+transform = Transform3D(1, 0, 0, 0, 2.1762927, 0, 0, 0, 5.886897, 0, 0, 3.1501427)
+
+[node name="SM_stop" parent="StopChecker2" index="1" unique_id=618739489]
+transform = Transform3D(-8.7422775e-10, 0, -0.02, 0, 0.02, 0, 0.02, 0, -8.7422775e-10, -8.832708, 0.38022435, 0)
+
 [editable path="SpeedChecker"]
+[editable path="StopChecker"]
+[editable path="StopChecker/SM_stop"]
+[editable path="StopChecker2"]
+[editable path="StopChecker2/SM_stop"]

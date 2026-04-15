@@ -1,109 +1,20 @@
 [gd_scene format=3 uid="uid://dyucugujqxwc8"]
 
-[ext_resource type="PackedScene" uid="uid://c3ixqkc6k13yi" path="res://addons/gevp/scenes/vehicle_controller.tscn" id="1_bswci"]
-[ext_resource type="PackedScene" uid="uid://ccs7xtede51mo" path="res://addons/gevp/scenes/simcade_car.tscn" id="2_rus8k"]
-[ext_resource type="PackedScene" uid="uid://b2hlchrj4h2b7" path="res://addons/gevp/scenes/engine_sound.tscn" id="3_5xbjy"]
-[ext_resource type="PackedScene" uid="uid://h6vdpba71kpr" path="res://addons/gevp/scenes/smoke_effect.tscn" id="4_4nkto"]
-[ext_resource type="Script" uid="uid://d0eom7tdwlrel" path="res://addons/gevp/scripts/gui.gd" id="5_fcfvj"]
-[ext_resource type="Script" uid="uid://dh62eiedykw0x" path="res://addons/gevp/scripts/camera.gd" id="6_pa8r4"]
+[ext_resource type="PackedScene" uid="uid://jhh0f6ldpxc6" path="res://scenes/base.tscn" id="1_e3sih"]
 [ext_resource type="Script" uid="uid://d3quhhh36ac8a" path="res://addons/road-generator/nodes/road_manager.gd" id="7_2os1m"]
 [ext_resource type="Script" uid="uid://8hk4tqftbwbd" path="res://addons/road-generator/nodes/road_container.gd" id="8_go7sj"]
 [ext_resource type="Material" uid="uid://dpashsuk5lr4x" path="res://addons/road-generator/resources/road_texture.material" id="9_2aecg"]
 [ext_resource type="Script" uid="uid://ddubm2sxt1cn7" path="res://addons/road-generator/nodes/road_point.gd" id="9_7gny6"]
 [ext_resource type="PackedScene" uid="uid://dfggtpn3gyrn0" path="res://addons/road-generator/custom_containers/3way_2x2.tscn" id="10_2os1m"]
+[ext_resource type="PackedScene" uid="uid://cjsncuqhbidk5" path="res://scenes/hud.tscn" id="10_go7sj"]
+[ext_resource type="PackedScene" uid="uid://bjfh6u0mmjag1" path="res://scenes/slut.tscn" id="11_2os1m"]
 [ext_resource type="PackedScene" uid="uid://bpew8n3qdphg8" path="res://scenes/speed_checker.tscn" id="12_go7sj"]
 [ext_resource type="PackedScene" uid="uid://04hklkngotge" path="res://scenes/stop_sign.tscn" id="13_6dial"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pklv7"]
-albedo_color = Color(0.17111987, 0.17111987, 0.17111987, 1)
-uv1_scale = Vector3(100, 100, 100)
-
-[sub_resource type="BoxMesh" id="BoxMesh_014kd"]
-material = SubResource("StandardMaterial3D_pklv7")
-size = Vector3(1000, 1, 1000)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_bswci"]
-size = Vector3(1000, 1, 1000)
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rus8k"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-
-[sub_resource type="Sky" id="Sky_fr4m5"]
-sky_material = SubResource("ProceduralSkyMaterial_rus8k")
-
-[sub_resource type="Environment" id="Environment_5xbjy"]
-background_mode = 2
-sky = SubResource("Sky_fr4m5")
-tonemap_mode = 2
-glow_enabled = true
+[ext_resource type="PackedScene" uid="uid://hc8563q7v2vy" path="res://scenes/traffic_lights_logic.tscn" id="14_2aecg"]
 
 [node name="Level1" type="Node3D" unique_id=844366013]
 
-[node name="VehicleController" parent="." unique_id=469968561 node_paths=PackedStringArray("vehicle_node") groups=["player_car"] instance=ExtResource("1_bswci")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2394495, 0)
-vehicle_node = NodePath("VehicleRigidBody")
-
-[node name="VehicleRigidBody" parent="VehicleController" unique_id=142635133 groups=["player_car"] instance=ExtResource("2_rus8k")]
-
-[node name="EngineSound" parent="VehicleController/VehicleRigidBody" unique_id=930065228 node_paths=PackedStringArray("vehicle") instance=ExtResource("3_5xbjy")]
-vehicle = NodePath("..")
-
-[node name="Smoke" parent="VehicleController/VehicleRigidBody" unique_id=1383511904 node_paths=PackedStringArray("vehicle") instance=ExtResource("4_4nkto")]
-vehicle = NodePath("..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1808985278 groups=["Grass"]]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
-metadata/_edit_group_ = true
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1305218835]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-mesh = SubResource("BoxMesh_014kd")
-skeleton = NodePath("../../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=387480928]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-shape = SubResource("BoxShape3D_bswci")
-
-[node name="GUI" type="Control" parent="." unique_id=1253054193 node_paths=PackedStringArray("vehicle")]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("5_fcfvj")
-vehicle = NodePath("../VehicleController/VehicleRigidBody")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="GUI" unique_id=2132183238]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Speed" type="Label" parent="GUI/VBoxContainer" unique_id=1939161471]
-layout_mode = 2
-
-[node name="RPM" type="Label" parent="GUI/VBoxContainer" unique_id=1553924678]
-layout_mode = 2
-
-[node name="Gear" type="Label" parent="GUI/VBoxContainer" unique_id=1151326416]
-layout_mode = 2
-
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1309021288 node_paths=PackedStringArray("follow_this")]
-transform = Transform3D(1, 0, 0, 0, 0.98977625, 0.14262903, 0, -0.14262903, 0.98977625, 4.05282, 4.72172, 5.80061)
-script = ExtResource("6_pa8r4")
-follow_distance = 8
-follow_height = 5
-follow_this = NodePath("../VehicleController/VehicleRigidBody")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2111153517]
-environment = SubResource("Environment_5xbjy")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1386048004]
-transform = Transform3D(0.527563, -0.469868, 0.707743, -1.33511e-08, 0.833114, 0.553101, -0.849516, -0.291796, 0.43952, 0, 2.26991, 0)
+[node name="Base" parent="." unique_id=1577378209 instance=ExtResource("1_e3sih")]
 
 [node name="RoadManager" type="Node3D" parent="." unique_id=1945438797]
 script = ExtResource("7_2os1m")
@@ -328,7 +239,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -90.90134, 7.0244026, 0)
 transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 43.004265, 0)
 
 [node name="SM_speed_50" parent="SpeedChecker" index="1" unique_id=1741663747]
-transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 50.114254, -6.867014, 8.571915)
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 50.114254, -6.867014, 9.168654)
 
 [node name="StopChecker" parent="." unique_id=457070357 instance=ExtResource("13_6dial")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -19.821709)
@@ -340,7 +251,7 @@ transform = Transform3D(17.156002, 0, 0, 0, 3.8274524, 0, 0, 0, 1, 0, 0.38022435
 transform = Transform3D(1, 0, 0, 0, 2.1762927, 0, 0, 0, 5.886897, 0, 0, 3.1501427)
 
 [node name="SM_stop" parent="StopChecker" index="1" unique_id=618739489]
-transform = Transform3D(-8.7422775e-10, 0, -0.02, 0, 0.02, 0, 0.02, 0, -8.7422775e-10, -8.832708, 0.38022435, 0)
+transform = Transform3D(-8.7422775e-10, 0, -0.02, 0, 0.02, 0, 0.02, 0, -8.7422775e-10, -8.832708, 0.046599746, 0)
 
 [node name="StopChecker2" parent="." unique_id=1234910224 instance=ExtResource("13_6dial")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -21.621563, 0, -0.11071968)
@@ -352,10 +263,25 @@ transform = Transform3D(17.156002, 0, 0, 0, 3.8274524, 0, 0, 0, 1, 0, 0.38022435
 transform = Transform3D(1, 0, 0, 0, 2.1762927, 0, 0, 0, 5.886897, 0, 0, 3.1501427)
 
 [node name="SM_stop" parent="StopChecker2" index="1" unique_id=618739489]
-transform = Transform3D(-8.7422775e-10, 0, -0.02, 0, 0.02, 0, 0.02, 0, -8.7422775e-10, -8.832708, 0.38022435, 0)
+transform = Transform3D(-8.7422775e-10, 0, -0.02, 0, 0.02, 0, 0.02, 0, -8.7422775e-10, -8.832708, 0.06317985, 0)
+
+[node name="TrafficLight" parent="." unique_id=1584248887 instance=ExtResource("14_2aecg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.674042, 0, -32.761906)
+
+[node name="CollisionShape3D" parent="TrafficLight/Area3D" parent_id_path=PackedInt32Array(1584248887, 1815350887) index="0" unique_id=53920906]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.107544, 2.101036, -0.4500885)
+
+[node name="HUD" parent="." unique_id=1387553868 instance=ExtResource("10_go7sj")]
+
+[node name="slutning" parent="." unique_id=255066434 instance=ExtResource("11_2os1m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -92.50104)
+
+[connection signal="body_entered" from="slutning" to="slutning" method="_on_body_entered"]
 
 [editable path="SpeedChecker"]
 [editable path="StopChecker"]
 [editable path="StopChecker/SM_stop"]
 [editable path="StopChecker2"]
 [editable path="StopChecker2/SM_stop"]
+[editable path="TrafficLight"]
+[editable path="TrafficLight/Sketchfab_Scene"]

@@ -7,7 +7,7 @@
 
 [node name="StopChecker" type="Node3D" unique_id=457070357]
 
-[node name="Area3D" type="Area3D" parent="." unique_id=969289128 node_paths=PackedStringArray("stop_sign")]
+[node name="Area3D" type="Area3D" parent="." unique_id=969289128 node_paths=PackedStringArray("stop_sign") groups=["forhindringer"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.38022435, 0)
 script = ExtResource("1_eo8om")
 stop_sign = NodePath("../SM_stop")

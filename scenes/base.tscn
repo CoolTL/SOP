@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://jhh0f6ldpxc6"]
+
+[ext_resource type="PackedScene" uid="uid://c3ixqkc6k13yi" path="res://addons/gevp/scenes/vehicle_controller.tscn" id="1_xvvcp"]
+[ext_resource type="PackedScene" uid="uid://ccs7xtede51mo" path="res://addons/gevp/scenes/simcade_car.tscn" id="2_hh5oj"]
+[ext_resource type="PackedScene" uid="uid://b2hlchrj4h2b7" path="res://addons/gevp/scenes/engine_sound.tscn" id="3_vqfsp"]
+[ext_resource type="PackedScene" uid="uid://h6vdpba71kpr" path="res://addons/gevp/scenes/smoke_effect.tscn" id="4_i6jx3"]
+[ext_resource type="Script" uid="uid://d0eom7tdwlrel" path="res://addons/gevp/scripts/gui.gd" id="5_jn13j"]
+[ext_resource type="Script" uid="uid://dh62eiedykw0x" path="res://addons/gevp/scripts/camera.gd" id="6_6irmp"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rus8k"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_fr4m5"]
+sky_material = SubResource("ProceduralSkyMaterial_rus8k")
+
+[sub_resource type="Environment" id="Environment_5xbjy"]
+background_mode = 2
+sky = SubResource("Sky_fr4m5")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pklv7"]
+albedo_color = Color(0.17111987, 0.17111987, 0.17111987, 1)
+uv1_scale = Vector3(100, 100, 100)
+
+[sub_resource type="BoxMesh" id="BoxMesh_014kd"]
+material = SubResource("StandardMaterial3D_pklv7")
+size = Vector3(1000, 1, 1000)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bswci"]
+size = Vector3(1000, 1, 1000)
+
+[node name="Base" type="Node3D" unique_id=1577378209]
+
+[node name="VehicleController" parent="." unique_id=261268079 node_paths=PackedStringArray("vehicle_node") groups=["player_car"] instance=ExtResource("1_xvvcp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2394495, 0)
+vehicle_node = NodePath("VehicleRigidBody")
+
+[node name="VehicleRigidBody" parent="VehicleController" unique_id=142635133 groups=["player_car"] instance=ExtResource("2_hh5oj")]
+
+[node name="EngineSound" parent="VehicleController/VehicleRigidBody" unique_id=1018039770 node_paths=PackedStringArray("vehicle") instance=ExtResource("3_vqfsp")]
+vehicle = NodePath("..")
+
+[node name="Smoke" parent="VehicleController/VehicleRigidBody" unique_id=1373416402 node_paths=PackedStringArray("vehicle") instance=ExtResource("4_i6jx3")]
+vehicle = NodePath("..")
+
+[node name="GUI" type="Control" parent="." unique_id=977689847 node_paths=PackedStringArray("vehicle")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_jn13j")
+vehicle = NodePath("../VehicleController/VehicleRigidBody")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI" unique_id=945770395]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Speed" type="Label" parent="GUI/VBoxContainer" unique_id=840561763]
+layout_mode = 2
+
+[node name="RPM" type="Label" parent="GUI/VBoxContainer" unique_id=1743257431]
+layout_mode = 2
+
+[node name="Gear" type="Label" parent="GUI/VBoxContainer" unique_id=1863366160]
+layout_mode = 2
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=47344525 node_paths=PackedStringArray("follow_this")]
+transform = Transform3D(1, 0, 0, 0, 0.98977625, 0.14262903, 0, -0.14262903, 0.98977625, 4.05282, 4.72172, 5.80061)
+script = ExtResource("6_6irmp")
+follow_distance = 8
+follow_height = 5
+follow_this = NodePath("../VehicleController/VehicleRigidBody")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=512669248]
+environment = SubResource("Environment_5xbjy")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1250611214]
+transform = Transform3D(0.527563, -0.46986827, 0.7077437, -1.33511e-08, 0.83311415, 0.5531012, -0.849516, -0.2917957, 0.43952015, 0, 2.26991, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1789505259 groups=["Grass"]]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=589882037]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+mesh = SubResource("BoxMesh_014kd")
+skeleton = NodePath("../../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1737902674]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_bswci")

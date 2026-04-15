@@ -1,0 +1,154 @@
+[gd_scene format=3 uid="uid://cjsncuqhbidk5"]
+
+[ext_resource type="Script" uid="uid://csdr0lmp75vp4" path="res://scenes/hud.gd" id="1_ahhtf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e3sih"]
+bg_color = Color(0.5019608, 0.5019608, 0.5019608, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2y5yt"]
+bg_color = Color(0.5019608, 0.5019608, 0.5019608, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[node name="HUD" type="Control" unique_id=1387553868]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -1.0
+offset_right = 1155.0
+offset_bottom = 646.0
+script = ExtResource("1_ahhtf")
+
+[node name="DoneScreen" type="Panel" parent="." unique_id=1594010991]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -249.0
+offset_top = -140.25
+offset_right = 249.0
+offset_bottom = 140.25
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_e3sih")
+
+[node name="DoneScreenText" type="Label" parent="DoneScreen" unique_id=1924209306]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -167.0
+offset_top = -82.0
+offset_right = 169.0
+offset_bottom = -29.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 38
+text = "Du klarede banen!"
+horizontal_alignment = 1
+
+[node name="SuccessText" type="Label" parent="DoneScreen" unique_id=298631174]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -71.0
+offset_top = 54.0
+offset_right = 71.0
+offset_bottom = 89.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Antal fejl:"
+horizontal_alignment = 1
+
+[node name="FailButton" type="Button" parent="DoneScreen" unique_id=1670005167]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 13.5
+offset_top = 92.0
+offset_right = 106.5
+offset_bottom = 129.25
+grow_horizontal = 2
+grow_vertical = 2
+text = "Se dine fejl"
+
+[node name="MenuButton" type="Button" parent="DoneScreen" unique_id=2097671661]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -91.5
+offset_top = 92.0
+offset_right = 1.5
+offset_bottom = 129.25
+grow_horizontal = 2
+grow_vertical = 2
+text = "Gå til menu"
+
+[node name="FailScreen" type="Panel" parent="." unique_id=1517744903]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -111.5
+offset_top = -138.125
+offset_right = 111.5
+offset_bottom = 138.125
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2y5yt")
+
+[node name="FejlListe" type="VBoxContainer" parent="FailScreen" unique_id=713005604]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.25
+offset_top = -136.5625
+offset_right = 110.25
+offset_bottom = 102.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Tilbage" type="Button" parent="FailScreen" unique_id=1748226649]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -28.0
+offset_top = -34.125
+offset_right = 27.75
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Tilbage"
+
+[connection signal="pressed" from="DoneScreen/FailButton" to="." method="_on_fail_button_pressed"]
+[connection signal="pressed" from="FailScreen/Tilbage" to="." method="_on_tilbage_pressed"]

@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://hc8563q7v2vy"]
+
+[ext_resource type="Script" uid="uid://bwkxas6twoy04" path="res://scripts/traffic_light.gd" id="1_73vsb"]
+[ext_resource type="PackedScene" uid="uid://cfakded2t1mtd" path="res://assets/traffic_light.tscn" id="2_73vsb"]
+[ext_resource type="Script" uid="uid://25jvb2dv86gh" path="res://scenes/traffic_light_stop.gd" id="2_ss1v4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_usqts"]
+size = Vector3(18.44458, 4.799301, 0.7716675)
+
+[node name="TrafficLight" type="Node3D" unique_id=1584248887]
+script = ExtResource("1_73vsb")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1815350887 node_paths=PackedStringArray("traffic_light") groups=["forhindringer"]]
+script = ExtResource("2_ss1v4")
+traffic_light = NodePath("../Sketchfab_Scene")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=53920906]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.234375, 1.3660431, -3.373886)
+shape = SubResource("BoxShape3D_usqts")
+
+[node name="Sketchfab_Scene" parent="." unique_id=186663855 instance=ExtResource("2_73vsb")]
+
+[connection signal="red" from="." to="Area3D" method="_on_traffic_light_red"]
+[connection signal="yellow" from="." to="Area3D" method="_on_traffic_light_yellow"]
+[connection signal="body_exited" from="Area3D" to="Area3D" method="_on_body_exited"]
+
+[editable path="Sketchfab_Scene"]

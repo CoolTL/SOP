@@ -4,6 +4,10 @@ var car_in = false
 var car_stop = false
 var lovbrud = false
 
+signal lovbrudt(data)
+
+
+
 @export var stop_sign: MeshInstance3D
 
 
@@ -41,8 +45,6 @@ func _on_body_exited(body: Node3D) -> void:
 				lovbrud = true
 			
 			if lovbrud:
-				print("Du stoppede ikke")
-			else:
-				print("Du stoppede")
+				lovbrudt.emit("Du stoppede ikke ved stopskiltet")
 			car_in = false
 		

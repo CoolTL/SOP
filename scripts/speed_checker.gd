@@ -5,6 +5,7 @@ extends Area3D
 
 var car_in = false
 var lovbrud = false
+signal lovbrudt(message)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -34,7 +35,6 @@ func _on_body_exited(body: Node3D) -> void:
 		car_in = false
 		
 		if lovbrud:
-			print("Du brød loven")
-		else:
-			print("Alt OK")
+			lovbrudt.emit("Du kørte for hurtigt")
+		
 		lovbrud = false

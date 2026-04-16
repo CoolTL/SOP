@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dlkjeujmg8deu" path="res://scripts/slut.gd" id="1_b7ltq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2y5yt"]
-size = Vector3(19.346008, 1, 1)
+size = Vector3(19.346008, 2.288208, 1)
 
 [node name="Area3D" type="Area3D" unique_id=255066434 groups=["slut"]]
 script = ExtResource("1_b7ltq")

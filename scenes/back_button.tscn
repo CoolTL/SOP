@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bnnnlhrp5e2uy"]
+
+[ext_resource type="Script" uid="uid://d1b0ll4wragii" path="res://scripts/back_button.gd" id="1_mki26"]
+
+[node name="BackButton" type="Button" unique_id=720017937]
+offset_right = 78.0
+offset_bottom = 32.99597
+text = "Tilbage"
+script = ExtResource("1_mki26")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

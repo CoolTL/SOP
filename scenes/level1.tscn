@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://dexhxp0a7hdrs"]
+
+[ext_resource type="PackedScene" uid="uid://jhh0f6ldpxc6" path="res://scenes/base.tscn" id="1_wwpf4"]
+[ext_resource type="PackedScene" uid="uid://cjsncuqhbidk5" path="res://scenes/hud.tscn" id="2_m7ahb"]
+[ext_resource type="Script" uid="uid://d3quhhh36ac8a" path="res://addons/road-generator/nodes/road_manager.gd" id="3_ru4tf"]
+[ext_resource type="Script" uid="uid://8hk4tqftbwbd" path="res://addons/road-generator/nodes/road_container.gd" id="4_6sh32"]
+[ext_resource type="Script" uid="uid://ddubm2sxt1cn7" path="res://addons/road-generator/nodes/road_point.gd" id="5_ejswk"]
+[ext_resource type="PackedScene" uid="uid://04hklkngotge" path="res://scenes/stop_sign.tscn" id="6_6sh32"]
+[ext_resource type="PackedScene" uid="uid://bjfh6u0mmjag1" path="res://scenes/slut.tscn" id="7_ejswk"]
+
+[node name="Level1" type="Node3D" unique_id=219991428]
+
+[node name="Base" parent="." unique_id=1577378209 instance=ExtResource("1_wwpf4")]
+
+[node name="HUD" parent="." unique_id=1387553868 instance=ExtResource("2_m7ahb")]
+
+[node name="RoadManager" type="Node3D" parent="." unique_id=1126353839]
+script = ExtResource("3_ru4tf")
+metadata/_custom_type_script = "uid://d3quhhh36ac8a"
+
+[node name="Road_001" type="Node3D" parent="RoadManager" unique_id=1205970738]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.20457, 0, 2.3622227)
+script = ExtResource("4_6sh32")
+use_lowpoly_preview = true
+edge_containers = Array[NodePath]([NodePath(""), NodePath("")])
+edge_rp_targets = Array[NodePath]([NodePath(""), NodePath("")])
+edge_rp_target_dirs = Array[int]([-1, -1])
+edge_rp_locals = Array[NodePath]([NodePath("RP_001"), NodePath("RP_002")])
+edge_rp_local_dirs = Array[int]([0, 1])
+
+[node name="RP_001" type="Node3D" parent="RoadManager/Road_001" unique_id=350143739]
+transform = Transform3D(0.999997, 0, -0.0024414419, 0, 1, 0, 0.0024414419, 0, 0.999997, 0, 0.25, 0)
+script = ExtResource("5_ejswk")
+traffic_dir = Array[int]([2, 2, 1, 1])
+lanes = Array[int]([2, 4, 4, 2])
+next_mag = 309.01767
+prior_pt_init = NodePath("../RP_002")
+
+[node name="RP_002" type="Node3D" parent="RoadManager/Road_001" unique_id=1481991237]
+transform = Transform3D(0.999997, 0, -0.0024414416, 0, 1, 0, 0.0024414416, 0, 0.999997, 1.5088973, 0.25, -195.12146)
+script = ExtResource("5_ejswk")
+traffic_dir = Array[int]([2, 2, 1, 1])
+lanes = Array[int]([2, 4, 4, 2])
+prior_mag = 309.01767
+next_mag = 309.01767
+next_pt_init = NodePath("../RP_001")
+
+[node name="StopChecker" parent="." unique_id=457070357 instance=ExtResource("6_6sh32")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -33.20316)
+
+[node name="CollisionShape3D" parent="StopChecker/Area3D" parent_id_path=PackedInt32Array(457070357, 969289128) index="0" unique_id=1267644844]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.90200806, 2.1817017, 2.2085571)
+
+[node name="SM_stop" parent="StopChecker" index="1" unique_id=618739489]
+transform = Transform3D(-4.3711387e-10, 0, -0.01, 0, 0.01, 0, 0.01, 0, -4.3711387e-10, -10.9366, 0.38022435, 0)
+
+[node name="StopChecker2" parent="." unique_id=2025509616 instance=ExtResource("6_6sh32")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -83.2634)
+
+[node name="CollisionShape3D" parent="StopChecker2/Area3D" parent_id_path=PackedInt32Array(2025509616, 969289128) index="0" unique_id=1267644844]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.90200806, 2.1817017, 2.2085571)
+
+[node name="SM_stop" parent="StopChecker2" index="1" unique_id=618739489]
+transform = Transform3D(-4.3711387e-10, 0, -0.01, 0, 0.01, 0, 0.01, 0, -4.3711387e-10, -10.9366, 0.38022435, 0)
+
+[node name="StopChecker3" parent="." unique_id=32705539 instance=ExtResource("6_6sh32")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -142.01115)
+
+[node name="CollisionShape3D" parent="StopChecker3/Area3D" parent_id_path=PackedInt32Array(32705539, 969289128) index="0" unique_id=1267644844]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.90200806, 2.1817017, 2.2085571)
+
+[node name="SM_stop" parent="StopChecker3" index="1" unique_id=618739489]
+transform = Transform3D(-4.3711387e-10, 0, -0.01, 0, 0.01, 0, 0.01, 0, -4.3711387e-10, -10.9366, 0.38022435, 0)
+
+[node name="Area3D" parent="." unique_id=255066434 instance=ExtResource("7_ejswk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -187.45709)
+
+[editable path="StopChecker"]
+[editable path="StopChecker/SM_stop"]
+[editable path="StopChecker2"]
+[editable path="StopChecker2/SM_stop"]
+[editable path="StopChecker3"]
+[editable path="StopChecker3/SM_stop"]
+[editable path="Area3D"]

@@ -4,6 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://bv1kml3aa0er1" path="res://assets/sm_speed_50.tscn" id="2_o0dtq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o0dtq"]
+resource_local_to_scene = true
+size = Vector3(22, 13.478577, 185.92302)
 
 [node name="SpeedChecker" type="Node3D" unique_id=1769848411]
 

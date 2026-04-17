@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://csdr0lmp75vp4" path="res://scenes/hud.gd" id="1_ahhtf"]
 [ext_resource type="Script" uid="uid://cwfpfgnelr0hi" path="res://scripts/menu_button.gd" id="2_oo0fn"]
+[ext_resource type="Texture2D" uid="uid://p2o1hm78i8fl" path="res://assets/kenney_ui-pack/PNG/Grey/Default/star.png" id="2_uo2fv"]
+[ext_resource type="Texture2D" uid="uid://bhwiu1l6u68g7" path="res://assets/kenney_ui-pack/PNG/Grey/Double/star.png" id="3_6fi6k"]
+[ext_resource type="Texture2D" uid="uid://c8vy6g0glejfx" path="res://assets/kenney_ui-pack/PNG/Yellow/Default/star.png" id="3_047uy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e3sih"]
 bg_color = Color(0.5019608, 0.5019608, 0.5019608, 1)
@@ -20,12 +23,15 @@ border_width_bottom = 2
 border_color = Color(0, 0, 0, 1)
 
 [node name="HUD" type="Control" unique_id=1387553868]
+process_mode = 2
 layout_mode = 3
 anchors_preset = 0
 offset_left = -1.0
 offset_right = 1155.0
 offset_bottom = 646.0
 script = ExtResource("1_ahhtf")
+greystar = ExtResource("2_uo2fv")
+yellowstar = ExtResource("3_047uy")
 
 [node name="DoneScreen" type="Panel" parent="." unique_id=1594010991]
 visible = false
@@ -51,9 +57,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -167.0
-offset_top = -82.0
+offset_top = -116.0
 offset_right = 169.0
-offset_bottom = -29.0
+offset_bottom = -63.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 38
@@ -106,6 +112,45 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Gå til menu"
 script = ExtResource("2_oo0fn")
+
+[node name="StarContainer" type="HBoxContainer" parent="DoneScreen" unique_id=1875690094]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -109.0
+offset_top = -47.0
+offset_right = 109.0
+offset_bottom = 23.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Star" type="TextureRect" parent="DoneScreen/StarContainer" unique_id=318255750]
+custom_minimum_size = Vector2(70, 2)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("3_6fi6k")
+expand_mode = 4
+
+[node name="Star2" type="TextureRect" parent="DoneScreen/StarContainer" unique_id=743036438]
+custom_minimum_size = Vector2(70, 2)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("3_6fi6k")
+expand_mode = 4
+
+[node name="Star3" type="TextureRect" parent="DoneScreen/StarContainer" unique_id=1326475065]
+custom_minimum_size = Vector2(70, 2)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("3_6fi6k")
+expand_mode = 4
 
 [node name="FailScreen" type="Panel" parent="." unique_id=1517744903]
 visible = false

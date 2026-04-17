@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://lf485nf1o86o" path="res://assets/sm_stop.tscn" id="2_ts8k5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rch63"]
+size = Vector3(17.652042, 2.2749443, 4.9725037)
 
 [node name="StopChecker" type="Node3D" unique_id=457070357]
 
@@ -13,6 +14,7 @@ script = ExtResource("1_eo8om")
 stop_sign = NodePath("../SM_stop")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1267644844]
+unique_name_in_owner = true
 shape = SubResource("BoxShape3D_rch63")
 
 [node name="SM_stop" parent="." unique_id=618739489 instance=ExtResource("2_ts8k5")]

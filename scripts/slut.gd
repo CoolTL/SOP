@@ -13,4 +13,5 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node3D) -> void:
-	slutning.emit()
+	if body.is_in_group("player_car"):
+		slutning.emit()

@@ -3,11 +3,14 @@
 [ext_resource type="Script" uid="uid://dlkjeujmg8deu" path="res://scripts/slut.gd" id="1_b7ltq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2y5yt"]
-size = Vector3(19.346008, 2.288208, 1)
+resource_local_to_scene = true
+size = Vector3(25.838394, 2.288208, 1)
 
 [node name="Area3D" type="Area3D" unique_id=255066434 groups=["slut"]]
 script = ExtResource("1_b7ltq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=343213698]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.892256, 1.028536, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055290222, 1.029, 0)
 shape = SubResource("BoxShape3D_2y5yt")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://f2cwa6qkkbuf"]
 
 [ext_resource type="Script" uid="uid://b2ay44scr2m8k" path="res://scripts/level_button.gd" id="1_yl4fo"]
-[ext_resource type="PackedScene" uid="uid://dyucugujqxwc8" path="res://scenes/level_1.tscn" id="2_rj3wb"]
+[ext_resource type="PackedScene" uid="uid://dexhxp0a7hdrs" path="res://scenes/level1.tscn" id="2_jqwib"]
 [ext_resource type="PackedScene" uid="uid://bnnnlhrp5e2uy" path="res://scenes/back_button.tscn" id="3_7obll"]
-[ext_resource type="PackedScene" uid="uid://d2tv887hblwa5" path="res://scenes/main.tscn" id="4_teein"]
+[ext_resource type="PackedScene" uid="uid://kjfokj2qdeks" path="res://scenes/level2.tscn" id="3_teein"]
+[ext_resource type="PackedScene" uid="uid://dxehq356vfn1t" path="res://scenes/level3.tscn" id="4_teein"]
+[ext_resource type="PackedScene" uid="uid://cfhru5dqp4ug7" path="res://scenes/level4.tscn" id="5_k08aj"]
 
 [node name="LevelMenu" type="Node2D" unique_id=2079377478]
 
@@ -53,58 +55,50 @@ columns = 8
 custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 script = ExtResource("1_yl4fo")
-level = ExtResource("2_rj3wb")
+level = ExtResource("2_jqwib")
 
-[node name="LevelButton2" type="Button" parent="AspectRatioContainer/ColorRect/MarginContainer/GridContainer" unique_id=2052480613 groups=["levelknap"]]
+[node name="LevelButton2" type="Button" parent="AspectRatioContainer/ColorRect/MarginContainer/GridContainer" unique_id=1311883525 groups=["levelknap"]]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+script = ExtResource("1_yl4fo")
+level = ExtResource("3_teein")
+
+[node name="LevelButton3" type="Button" parent="AspectRatioContainer/ColorRect/MarginContainer/GridContainer" unique_id=407746135 groups=["levelknap"]]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+script = ExtResource("1_yl4fo")
+level = ExtResource("4_teein")
+
+[node name="LevelButton4" type="Button" parent="AspectRatioContainer/ColorRect/MarginContainer/GridContainer" unique_id=1050883287 groups=["levelknap"]]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+script = ExtResource("1_yl4fo")
+level = ExtResource("5_k08aj")
+
+[node name="LevelButton5" type="Button" parent="AspectRatioContainer/ColorRect/MarginContainer/GridContainer" unique_id=1872364015 groups=["levelknap"]]
 custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 script = ExtResource("1_yl4fo")
 
-[node name="LevelButton3" type="Button" parent="AspectRatioContainer/ColorRect/MarginContainer/GridContainer" unique_id=1261940913 groups=["levelknap"]]
+[node name="LevelButton6" type="Button" parent="AspectRatioContainer/ColorRect/MarginContainer/GridContainer" unique_id=1869610115 groups=["levelknap"]]
 custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 script = ExtResource("1_yl4fo")
 
-[node name="LevelButton4" type="Button" parent="AspectRatioContainer/ColorRect/MarginContainer/GridContainer" unique_id=1238326275 groups=["levelknap"]]
+[node name="LevelButton7" type="Button" parent="AspectRatioContainer/ColorRect/MarginContainer/GridContainer" unique_id=17521474 groups=["levelknap"]]
 custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 script = ExtResource("1_yl4fo")
 
-[node name="LevelButton5" type="Button" parent="AspectRatioContainer/ColorRect/MarginContainer/GridContainer" unique_id=759028164 groups=["levelknap"]]
+[node name="LevelButton8" type="Button" parent="AspectRatioContainer/ColorRect/MarginContainer/GridContainer" unique_id=1694120903 groups=["levelknap"]]
 custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 script = ExtResource("1_yl4fo")
 
-[node name="LevelButton6" type="Button" parent="AspectRatioContainer/ColorRect/MarginContainer/GridContainer" unique_id=1724672291 groups=["levelknap"]]
-custom_minimum_size = Vector2(120, 120)
-layout_mode = 2
-script = ExtResource("1_yl4fo")
-
-[node name="LevelButton7" type="Button" parent="AspectRatioContainer/ColorRect/MarginContainer/GridContainer" unique_id=1616260003 groups=["levelknap"]]
-custom_minimum_size = Vector2(120, 120)
-layout_mode = 2
-script = ExtResource("1_yl4fo")
-
-[node name="LevelButton8" type="Button" parent="AspectRatioContainer/ColorRect/MarginContainer/GridContainer" unique_id=1294475528 groups=["levelknap"]]
-custom_minimum_size = Vector2(120, 120)
-layout_mode = 2
-script = ExtResource("1_yl4fo")
-
-[node name="LevelButton9" type="Button" parent="AspectRatioContainer/ColorRect/MarginContainer/GridContainer" unique_id=912511521 groups=["levelknap"]]
+[node name="LevelButton9" type="Button" parent="AspectRatioContainer/ColorRect/MarginContainer/GridContainer" unique_id=1481859081 groups=["levelknap"]]
 custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 script = ExtResource("1_yl4fo")
 
 [node name="BackButton" parent="AspectRatioContainer/ColorRect" unique_id=720017937 instance=ExtResource("3_7obll")]
 layout_mode = 0
-back_name = ExtResource("4_teein")
-
-[connection signal="pressed" from="AspectRatioContainer/ColorRect/MarginContainer/GridContainer/LevelButton" to="AspectRatioContainer/ColorRect/MarginContainer/GridContainer/LevelButton" method="_on_pressed"]
-[connection signal="pressed" from="AspectRatioContainer/ColorRect/MarginContainer/GridContainer/LevelButton2" to="AspectRatioContainer/ColorRect/MarginContainer/GridContainer/LevelButton2" method="_on_pressed"]
-[connection signal="pressed" from="AspectRatioContainer/ColorRect/MarginContainer/GridContainer/LevelButton3" to="AspectRatioContainer/ColorRect/MarginContainer/GridContainer/LevelButton3" method="_on_pressed"]
-[connection signal="pressed" from="AspectRatioContainer/ColorRect/MarginContainer/GridContainer/LevelButton4" to="AspectRatioContainer/ColorRect/MarginContainer/GridContainer/LevelButton4" method="_on_pressed"]
-[connection signal="pressed" from="AspectRatioContainer/ColorRect/MarginContainer/GridContainer/LevelButton5" to="AspectRatioContainer/ColorRect/MarginContainer/GridContainer/LevelButton5" method="_on_pressed"]
-[connection signal="pressed" from="AspectRatioContainer/ColorRect/MarginContainer/GridContainer/LevelButton6" to="AspectRatioContainer/ColorRect/MarginContainer/GridContainer/LevelButton6" method="_on_pressed"]
-[connection signal="pressed" from="AspectRatioContainer/ColorRect/MarginContainer/GridContainer/LevelButton7" to="AspectRatioContainer/ColorRect/MarginContainer/GridContainer/LevelButton7" method="_on_pressed"]
-[connection signal="pressed" from="AspectRatioContainer/ColorRect/MarginContainer/GridContainer/LevelButton8" to="AspectRatioContainer/ColorRect/MarginContainer/GridContainer/LevelButton8" method="_on_pressed"]
-[connection signal="pressed" from="AspectRatioContainer/ColorRect/MarginContainer/GridContainer/LevelButton9" to="AspectRatioContainer/ColorRect/MarginContainer/GridContainer/LevelButton9" method="_on_pressed"]

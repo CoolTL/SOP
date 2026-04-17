@@ -1,0 +1,148 @@
+[gd_scene format=3 uid="uid://cfhru5dqp4ug7"]
+
+[ext_resource type="PackedScene" uid="uid://jhh0f6ldpxc6" path="res://scenes/base.tscn" id="1_im88e"]
+[ext_resource type="PackedScene" uid="uid://cjsncuqhbidk5" path="res://scenes/hud.tscn" id="2_vxn4p"]
+[ext_resource type="Script" uid="uid://d3quhhh36ac8a" path="res://addons/road-generator/nodes/road_manager.gd" id="3_5cjb5"]
+[ext_resource type="Script" uid="uid://8hk4tqftbwbd" path="res://addons/road-generator/nodes/road_container.gd" id="4_q6sfj"]
+[ext_resource type="Script" uid="uid://ddubm2sxt1cn7" path="res://addons/road-generator/nodes/road_point.gd" id="5_0wxwt"]
+[ext_resource type="PackedScene" uid="uid://bpew8n3qdphg8" path="res://scenes/speed_checker.tscn" id="6_5tkub"]
+[ext_resource type="PackedScene" uid="uid://hc8563q7v2vy" path="res://scenes/traffic_lights_logic.tscn" id="7_vxn4p"]
+[ext_resource type="PackedScene" uid="uid://04hklkngotge" path="res://scenes/stop_sign.tscn" id="8_5cjb5"]
+[ext_resource type="PackedScene" uid="uid://bjfh6u0mmjag1" path="res://scenes/slut.tscn" id="9_0wxwt"]
+[ext_resource type="PackedScene" uid="uid://c2ttc2f5hyvfk" path="res://assets/sm_speed_30.tscn" id="10_5tkub"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_im88e"]
+resource_local_to_scene = true
+size = Vector3(22, 13.478577, 184.02379)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jvphm"]
+resource_local_to_scene = true
+size = Vector3(22, 13.478577, 79.0147)
+
+[node name="level4" type="Node3D" unique_id=184032472]
+
+[node name="Base" parent="." unique_id=1577378209 instance=ExtResource("1_im88e")]
+
+[node name="HUD" parent="." unique_id=1387553868 instance=ExtResource("2_vxn4p")]
+
+[node name="RoadManager" type="Node3D" parent="." unique_id=1806746279]
+script = ExtResource("3_5cjb5")
+metadata/_custom_type_script = "uid://d3quhhh36ac8a"
+
+[node name="Road_001" type="Node3D" parent="RoadManager" unique_id=718182083]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.30142212, 0, 7.1072006)
+script = ExtResource("4_q6sfj")
+use_lowpoly_preview = true
+edge_containers = Array[NodePath]([NodePath(""), NodePath("")])
+edge_rp_targets = Array[NodePath]([NodePath(""), NodePath("")])
+edge_rp_target_dirs = Array[int]([-1, -1])
+edge_rp_locals = Array[NodePath]([NodePath("RP_001"), NodePath("RP_003")])
+edge_rp_local_dirs = Array[int]([0, 1])
+
+[node name="RP_001" type="Node3D" parent="RoadManager/Road_001" unique_id=995876949]
+transform = Transform3D(0.99999267, 0, 0.0038346993, 0, 1, 0, -0.0038346993, 0, 0.99999267, 0, 0.25, 0)
+script = ExtResource("5_0wxwt")
+traffic_dir = Array[int]([2, 2, 1, 1])
+lanes = Array[int]([2, 4, 4, 2])
+next_mag = 168.53331
+prior_pt_init = NodePath("../RP_002")
+
+[node name="RP_002" type="Node3D" parent="RoadManager/Road_001" unique_id=1940531587]
+transform = Transform3D(0.99999267, 0, 0.003834699, 0, 1, 0, -0.003834699, 0, 0.99999267, -1.2925491, 0.25, -337.06415)
+script = ExtResource("5_0wxwt")
+traffic_dir = Array[int]([2, 2, 1, 1])
+lanes = Array[int]([2, 4, 4, 2])
+prior_mag = 35.228394
+next_mag = 168.53331
+prior_pt_init = NodePath("../RP_003")
+next_pt_init = NodePath("../RP_001")
+
+[node name="RP_003" type="Node3D" parent="RoadManager/Road_001" unique_id=589416491]
+transform = Transform3D(0.9998096, 0, -0.019510686, 0, 1, 0, 0.019510686, 0, 0.9998096, -0.7402153, 0.25, -407.51877)
+script = ExtResource("5_0wxwt")
+traffic_dir = Array[int]([2, 2, 1, 1])
+lanes = Array[int]([2, 4, 4, 2])
+prior_mag = 35.228394
+next_mag = 35.228394
+next_pt_init = NodePath("../RP_002")
+
+[node name="SpeedChecker" parent="." unique_id=1769848411 instance=ExtResource("6_5tkub")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -68.50523)
+
+[node name="CollisionShape3D" parent="SpeedChecker/Area3D" parent_id_path=PackedInt32Array(1769848411, 1067092917) index="0" unique_id=842981460]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.38964844, 2.7637634, -92.604904)
+shape = SubResource("BoxShape3D_im88e")
+
+[node name="SM_speed_50" parent="SpeedChecker" index="1" unique_id=1741663747]
+transform = Transform3D(-8.7422775e-10, 0, -0.02, 0, 0.02, 0, 0.02, 0, -8.7422775e-10, -10.979373, 0, 0)
+
+[node name="TrafficLight" parent="." unique_id=1584248887 instance=ExtResource("7_vxn4p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -24.069063)
+
+[node name="Sketchfab_Scene" parent="TrafficLight" index="1" unique_id=186663855]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.326773, 0, -3.112503)
+
+[node name="StopChecker" parent="." unique_id=457070357 instance=ExtResource("8_5cjb5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -109.19848)
+
+[node name="CollisionShape3D" parent="StopChecker/Area3D" parent_id_path=PackedInt32Array(457070357, 969289128) index="0" unique_id=1267644844]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11636162, 1.0511265, 2.803955)
+
+[node name="SM_stop" parent="StopChecker" index="1" unique_id=618739489]
+transform = Transform3D(-4.3711387e-10, 0, -0.01, 0, 0.01, 0, 0.01, 0, -4.3711387e-10, -10.356967, 0.38022435, 0)
+
+[node name="StopChecker2" parent="." unique_id=1182767796 instance=ExtResource("8_5cjb5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -267.837)
+
+[node name="CollisionShape3D" parent="StopChecker2/Area3D" parent_id_path=PackedInt32Array(1182767796, 969289128) index="0" unique_id=1267644844]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11636162, 1.0511265, 2.803955)
+
+[node name="SM_stop" parent="StopChecker2" index="1" unique_id=618739489]
+transform = Transform3D(-4.3711387e-10, 0, -0.01, 0, 0.01, 0, 0.01, 0, -4.3711387e-10, -10.356967, 0.38022435, 0)
+
+[node name="TrafficLight2" parent="." unique_id=611485017 instance=ExtResource("7_vxn4p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -188.2488)
+
+[node name="Sketchfab_Scene" parent="TrafficLight2" index="1" unique_id=186663855]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.326773, 0, -3.112503)
+
+[node name="TrafficLight3" parent="." unique_id=299684884 instance=ExtResource("7_vxn4p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -329.68753)
+
+[node name="Sketchfab_Scene" parent="TrafficLight3" index="1" unique_id=186663855]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.326773, 0, -3.112503)
+
+[node name="Area3D" parent="." unique_id=255066434 instance=ExtResource("9_0wxwt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -398.84988)
+
+[node name="SpeedChecker2" parent="." unique_id=1381891134 instance=ExtResource("6_5tkub")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -343.55408)
+
+[node name="Area3D" parent="SpeedChecker2" index="0" unique_id=1067092917]
+speed_limit = 30
+
+[node name="CollisionShape3D" parent="SpeedChecker2/Area3D" index="0" unique_id=842981460]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.38964844, 2.7637634, -40.100372)
+shape = SubResource("BoxShape3D_jvphm")
+
+[node name="SM_speed_50" parent="SpeedChecker2" index="1" unique_id=1741663747]
+transform = Transform3D(-8.7422775e-10, 0, -0.02, 0, 0.02, 0, 0.02, 0, -8.7422775e-10, -10.979373, 0, 0)
+visible = false
+
+[node name="SM_speed_30" parent="SpeedChecker2" unique_id=337985900 instance=ExtResource("10_5tkub")]
+transform = Transform3D(-8.7422775e-10, 0, -0.02, 0, 0.02, 0, 0.02, 0, -8.7422775e-10, -11, 0, 0)
+
+[editable path="SpeedChecker"]
+[editable path="TrafficLight"]
+[editable path="TrafficLight/Sketchfab_Scene"]
+[editable path="StopChecker"]
+[editable path="StopChecker/SM_stop"]
+[editable path="StopChecker2"]
+[editable path="StopChecker2/SM_stop"]
+[editable path="TrafficLight2"]
+[editable path="TrafficLight2/Sketchfab_Scene"]
+[editable path="TrafficLight3"]
+[editable path="TrafficLight3/Sketchfab_Scene"]
+[editable path="SpeedChecker2"]
